@@ -2,7 +2,7 @@ import HomeTitle from "./HomeTitle";
 
 export default function Home() {
   return (
-    <main className="flex items-center justify-center from-white">
+    <main className="flex items-center justify-center grow from-white">
       <section 
         id="home" 
         className="min-h-auto flex flex-col md:flex-row items-center justify-center w-full px-10 py-20 gap-10"
@@ -13,8 +13,7 @@ export default function Home() {
             <HomeTitle />
 
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Your go-to platform for the latest news, events, and stories from around the world. 
-              Stay informed and connected with Crimson Chronicle.
+              Crimson Chronical is a campus-first event discovery platform that helps students stay connected with university life through real-time event updates, smart filtering, and an intuitive dashboard for organizers.
             </p>
           </div>
 

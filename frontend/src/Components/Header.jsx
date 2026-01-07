@@ -8,10 +8,10 @@ export default function Header() {
           <h1 className="text-2xl font-bold">Crimson Chronicle</h1>
         </div>
         <div className="space-x-4">
-          <a className="hover:text-red-600" href="#home">Home</a>
-          <a className="hover:text-red-600" href="#about">About Us</a>
-          <a  className="hover:text-red-600" href="#home">Events</a>
-          <a className="hover:text-red-600" href="#contact">Contact Us</a>
+          <a className="hover:text-red-600"><Link to="/">Home</Link></a>
+          <a className="hover:text-red-600"><Link to="/about">About Us</Link></a>
+          <a  className="hover:text-red-600"><Link to="/events">Events</Link></a>
+          <a className="hover:text-red-600"><Link to="/contact">Contact Us</Link></a>
         </div>
       </nav>
     </header>

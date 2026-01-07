@@ -1,19 +1,21 @@
-import Home from "./Components/Home";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import EventRoute from "./pages/EventRoute";
 import Header from "./Components/Header";
-import About from "./Components/About";
+import Footer from "./Components/Footer";
 import Contact from "./Components/Contact";
 
-function App() {
 
-
-  return (
-    <div>
+export default function App(){
+    return(
+      <>
       <Header/>
-      <Home />
-      <About />
-      <Contact />
-    </div>
-  );
+      <Routes>
+        <Route path="/" element={<Dashboard/>}/>
+        <Route path="/events" element={<EventRoute/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+      </Routes>
+      <Footer/>
+      </>
+    )
 }
-
-export default App;

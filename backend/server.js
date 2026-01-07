@@ -2,12 +2,22 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require('mongoose');
+const Event = require('./models/event');
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
+main()
+.then(() => console.log("Connected to DB 😊"))
+.catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/crimson_chronical');
+}
+
+app.get("/", async(req, res) => {
+  const event = await Event.find();
+  res.json(event);
 });
 
 const PORT = 5000;

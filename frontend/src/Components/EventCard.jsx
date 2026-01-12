@@ -2,11 +2,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
-export default function EventCard({title,desc,img}) {
+export default function EventCard({_id,title,desc,img}) {
 
 
   return (
+    <Link to={`/events/${_id}`}>
     <Card sx={{ maxWidth: 345, borderRadius: 3, cursor: 'pointer' }}>
       <CardMedia
         sx={{ height: 250 }}
@@ -22,5 +24,6 @@ export default function EventCard({title,desc,img}) {
         </Typography>
       </CardContent>
     </Card>
+    </Link>
   );
 }

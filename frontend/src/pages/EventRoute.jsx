@@ -1,10 +1,8 @@
-import { useEffect } from "react"
-import EventTab from "../Components/EventTab"
+import ShowEvent from "../Components/ShowEvent";
 
-export default function EventRoute(){
-    return(
-        <>
-            <EventTab />
-        </>
-    )
+export default function EventRoute() {
+
+  return (
+    <ShowEvent />
+  );
 }

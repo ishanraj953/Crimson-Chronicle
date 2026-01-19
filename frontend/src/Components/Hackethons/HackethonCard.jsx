@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import EventCard from "./EventCard";
+import EventCard from "../EventCard";
 import {Link} from 'react-router-dom'
-import Button from "./Button";
+import Button from "../Button";
 
-export default function Events() {
+export default function HackethonCard() {
 
     const [events, setEvents] = useState([]);
 
@@ -20,9 +20,9 @@ export default function Events() {
 
 
     return (
-        <section id="events" className="px-6 py-12 bg-gray-100 mt-10">
-            <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800">Our <span className="text-red-500">Events</span></h2>
-            <div className="grid grid-cols-4 gap-5 ">
+        <section id="hackethon" className="px-6 py-12 bg-gray-100">
+            <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800">Our <span className="text-red-500">Hackethons</span></h2>
+            <div className="grid grid-cols-4 gap-5">
             {
                 events
                 .sort((a,b) => new Date(b.date) - new Date(a.date))
@@ -38,7 +38,7 @@ export default function Events() {
             }
             </div>
             <div className="flex justify-center mt-8">
-                <Button link={"/events"} desc={"Explore All Events"}/>
+                <Button link={"/events"} desc={"See More Events"}/>
             </div>
         </section>
     );

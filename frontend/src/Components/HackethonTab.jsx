@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import EventCard from "./EventCard"
 import Button from "./Button"
 
-export default function EventTab(){
+export default function HackethonTab(){
 
    const [events, setEvents] = useState([]);
    const [loader, setLoader] = useState(6);
@@ -25,7 +25,7 @@ export default function EventTab(){
     return(
 
         <section className="flex flex-col items-center justify-center">
-            <h1 className="text-4xl text-gray-700 font-bold font-mono underline decoration-orange-400 underline-offset-4 m-1 mt-2.5">Events</h1>
+            <h1 className="text-4xl text-gray-700 font-extrabold m-1 mt-2.5">Explore <span className="text-red-500">Hackethons</span></h1>
             <div className=" grid grid-cols-3 gap-18 m-5">
                 {
                 events

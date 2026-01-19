@@ -20,5 +20,11 @@ app.get("/", async(req, res) => {
   res.json(event);
 });
 
+app.get("/events/:id", async(req,res) => {
+  const {id} = req.params;
+  const event = await Event.findById(id);
+  res.json(event);
+})
+
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

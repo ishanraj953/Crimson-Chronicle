@@ -1,7 +1,7 @@
-import About from '../Components/About'
+import AbouteTab from '../Components/AboutTab'
 
 export default function AboutRoute() {
     return (
-        <About />
+        <AbouteTab />
     )
 }

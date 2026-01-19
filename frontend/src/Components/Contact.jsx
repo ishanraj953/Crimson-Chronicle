@@ -8,7 +8,7 @@ export default function Contact() {
         
         <div className="w-full md:w-1/2 pr-0 md:pr-8">
           <h1 className="text-4xl font-extrabold mb-8 font-roboto text-gray-800 text-center md:text-left">
-            Contact Us
+            Contact <span className="text-red-500">Us</span>
           </h1>
         <form action="/submit-contact" method="post">
           <div className="relative mb-4">

@@ -1,4 +1,4 @@
-import HomeTitle from "./HomeTitle";
+
 
 export default function Home() {
   return (
@@ -10,10 +10,17 @@ export default function Home() {
         
         <div className="md:w-1/2 w-full">
           <div className="text-left">
-            <HomeTitle />
+             <p className="text-lg text-gray-800 mb-6 leading-relaxed">
+              <span className="text-red-500">Learn</span> by doing <span className="font-extrabold">|</span> <span className="text-red-500">Build</span> real skills <span className="font-extrabold">|</span> <span className="text-red-500">Grow</span> with confidence.
+            </p>
+            <h1 className="text-5xl mb-5 font-bold">
+              Every winner was once a{" "}
+              <span className="text-red-600">Loser</span>
+            </h1>
+
 
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              Crimson Chronical is a campus-first event discovery platform that helps students stay connected with university life through real-time event updates, smart filtering, and an intuitive dashboard for organizers.
+              An Experiential learning platform helping Students, Developers, Professionals & Startups to Skill, Upskill and Reskill themselves.
             </p>
           </div>
 

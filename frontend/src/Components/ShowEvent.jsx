@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import EventBanner from "./EventBanner";
 import CustomizedTimeline from "./CustomizedTimeline";
 import RewardCard from "./RewardCard";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function ShowEvent() {
   const [event, setEvent] = useState(null);
@@ -15,12 +17,26 @@ export default function ShowEvent() {
         console.log(event);
   }, [id]);
 
+  const onDelete = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:5000/events/${id}`, {
+      method: "DELETE",
+    });
+
+    window.location.href = "/events";
+
+  }catch (err) {
+    console.log(err);
+  }
+  };
+
+
   if (!event) return <p>Loading...</p>;
 
   return (
           <section className="flex flex-col items-center p-8">
             <div className="cursor-pointer">
-              <EventBanner />
+              <EventBanner img={event.img}/>
             </div>
             <section className="mt-8 w-225 rounded-3xl shadow-xl p-8">
         <div className="flex justify-between items-center">
@@ -29,7 +45,7 @@ export default function ShowEvent() {
             
           </div>
 
-        <p className=" text-gray-800 mt-3">Indian Institute of Technology (IIT), Kharagpur</p>
+        <p className=" text-gray-800 mt-3">{event.organisation}</p>
 
         <div className="text-gray-600 flex flex-row items-center justify-between">
   
@@ -39,16 +55,35 @@ export default function ShowEvent() {
               <i className="fa-solid fa-people-group bg-teal-50"></i>
             </div>
             <p className="m-1">Team Size:</p>
-            <p>1-4</p>
+            <p>{event.teamSize.min}-{event.teamSize.max}</p>
           </div>
 
           {/* Register Button */}
+          <div>
+          <div className="flex flex-row gap-2">
           <button className="px-6 py-2 rounded-xl mb-1.5 cursor-pointer 
             bg-red-500 text-white font-bold 
             hover:bg-red-600 transition">
             Register
           </button>
-
+          <button
+          onClick={() => onDelete(id)}
+          className="px-6 py-2 rounded-xl mb-1.5 cursor-pointer 
+              bg-red-500 text-white font-bold 
+              hover:bg-red-600 transition"
+          >Delete</button>
+        </div>
+        <div>
+          <Link to={``}>
+          <button 
+          className="px-6 py-2 w-full rounded-xl mb-1.5 cursor-pointer 
+            bg-red-500 text-white font-bold 
+            hover:bg-red-600 transition">
+            Edit Oppertunity
+          </button>
+          </Link>
+        </div>
+        </div>
         </div>
 
         <div className="h-8"></div>
@@ -56,11 +91,27 @@ export default function ShowEvent() {
         <div className="bg-white shadow mt-2 p-6 rounded-xl ">
             <CustomizedTimeline />
         </div>
+
+        <div className="p-6 rounded-xl ">
+            <h1 className="text-3xl text-gray-700 font-extrabold"><span className="text-red-500">About</span> Oppertunity</h1>
+            <div className="text-gray-700 mt-8">
+              <h2 className="mt-3 text-gray-900 font-bold">About:</h2>
+              <p className="m-3">{event.description}</p>
+              <p className="m-3">Visit our Website: <a href={event.website} className="hover:text-red-400">{event.organisation}</a></p>
+              <h2 className="mt-3 text-gray-900 font-bold">Participation Type:</h2>
+              <p className="m-3">{(event.participationType).toUpperCase()}</p>
+              <h2 className="mt-3 text-gray-900 font-bold">Mode:</h2>
+              <p className="m-3">{(event.mode).toUpperCase()}</p>
+              <h2 className="mt-3 text-gray-900 font-bold">Venue:</h2>
+              <p className="m-3">{(event.venue).toUpperCase()}</p>
+            </div>
+        </div>
+
         <div className="mt-8">
             <h1 className="text-3xl text-gray-700 font-extrabold"><span className="text-red-500">Prizes</span> & Rewards</h1>
-            <RewardCard />
-            <RewardCard />
-            <RewardCard />
+            <RewardCard reward={event.reward.first}/>
+            <RewardCard reward={event.reward.second}/>
+            <RewardCard reward={event.reward.third}/>
         </div>
         <div className="p-6 rounded-xl ">
             <h1 className="text-3xl text-gray-700 font-extrabold"><span className="text-red-500">Feedback</span> & Ratings</h1>

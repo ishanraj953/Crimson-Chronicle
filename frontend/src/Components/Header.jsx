@@ -11,8 +11,8 @@ export default function Header() {
 
         <div className="space-x-4 font-medium">
           <Link to="/" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Home</Link>
-          <Link to="/hackethons" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Hackethons</Link>
-          <Link to="/events" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Events</Link>
+          <Link to="/events" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Oppertunities</Link>
+          <Link to="/events/create" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">New Events</Link>
           <Link to="/about" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">About Us</Link>
           <Link to="/contact" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Contact Us</Link>
         </div>

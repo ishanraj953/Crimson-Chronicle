@@ -1,57 +1,78 @@
-import { useEffect, useState } from "react"
-import EventCard from "./EventCard"
-import Button from "./Button"
+import { useEffect, useState } from "react";
+import EventCard from "./EventCard";
+import Button from "./Button";
 
-export default function EventTab(){
+export default function EventTab() {
 
-   const [events, setEvents] = useState([]);
-   const [loader, setLoader] = useState(6);
+  const [events, setEvents] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [loader, setLoader] = useState(6);
 
-    useEffect(() => {
+
+  useEffect(() => {
     fetch("http://localhost:5000/")
-        .then(res => {
-        return res.json();
-        })
-        .then(data => {
-        setEvents(data);
-        })
-        .catch(err => console.error("FETCH ERROR:", err));
-    }, []);
+      .then(res => res.json())
+      .then(data => setEvents(data))
+      .catch(err => console.error("FETCH ERROR:", err));
+  }, []);
 
-    const eventsLoader = () => setLoader(prev => prev + 6);
+  useEffect(() => {
+    setLoader(6);
+  }, [selectedCategory]);
 
-    const eventsReducer = () => setLoader(prev => prev = 6);
 
-    return(
+  const filteredCategory = events
+          .filter(e =>
+            selectedCategory === "all" ? true : e.type === selectedCategory
+          )
 
-        <section className="flex flex-col items-center justify-center">
-            <h1 className="text-4xl text-gray-700 font-bold font-mono underline decoration-orange-400 underline-offset-4 m-1 mt-2.5">Events</h1>
-            <div className=" grid grid-cols-3 gap-18 m-5">
-                {
-                events
-                .sort((a,b) => new Date(b.date) - new Date(a.date))
-                .slice(0,loader)
-                .map(e => (
-                    <EventCard
-                        _id={e._id}
-                        title={e.title}
-                        desc={e.description}
-                        img={e.img}
-                    />
-                ))
-            }
-            </div>
-            {loader < events.length &&
-            <div>
-                <Button onClick={eventsLoader} desc={"Load More"}/>
-            </div>
-            }
-            {loader > events.length &&
-            <div>
-                <Button onClick={eventsReducer} desc={"Show Less"}/>
-            </div>
-            }
+  const eventsLoader = () => setLoader(prev => prev + 6);
+  const eventsReducer = () => setLoader(6);
 
-        </section>
-    )
+  return (
+    <section className="flex flex-col items-center justify-center">
+
+      <h1 className="text-4xl text-gray-700 font-bold font-mono underline decoration-orange-400 underline-offset-4 m-1 mt-6">
+        Opportunity
+      </h1>
+
+      <div className="flex gap-5 m-5">
+        {["all", "hackathon", "event", "workshop", "internship"].map(cat => (
+          <button
+            key={cat}
+            onClick={() => setSelectedCategory(cat)}
+            className={`hover:bg-red-400 hover:text-white p-2 rounded-2xl border border-gray-200 cursor-pointer ${
+              selectedCategory === cat ? "bg-red-400 text-white" : "bg-white"
+            }`}
+          >
+            {cat.toUpperCase()}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-3 gap-18 m-5">
+        {filteredCategory
+          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .slice(0, loader)
+          .map(e => (
+            <EventCard
+              key={e._id}
+              _id={e._id}
+              title={e.title}
+              desc={e.description}
+              img={e.img}
+            />
+          ))}
+      </div>
+
+      {loader < filteredCategory.length && (
+        <Button onClick={eventsLoader} desc={"Load More"} />
+      )}
+
+      {loader > filteredCategory.length && (
+        <Button onClick={eventsReducer} desc={"Show Less"} />
+      )}
+
+    </section>
+  );
 }

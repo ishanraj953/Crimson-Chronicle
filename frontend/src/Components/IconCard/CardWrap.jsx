@@ -16,10 +16,10 @@ export default function CardWrap() {
                      />
                    </span></h2>
             <div className="flex flex-row justify-center gap-10">
-            <IconCard icon={<CodeIcon fontSize="large" />} link={"/hackethon"} bgcolor={"rgb(90, 156, 181)"} title={"Hackathon"} desc={"Participate in various hackathons and upskill yourself."}/>
-            <IconCard icon={<LaptopIcon fontSize="large" />} link={"/"} bgcolor={"green"} title={"Internships"} desc={"Get the right internships by upscaling yourself."}/>
+            <IconCard icon={<CodeIcon fontSize="large" />} link={"/events"} bgcolor={"rgb(90, 156, 181)"} title={"Hackathon"} desc={"Participate in various hackathons and upskill yourself."}/>
+            <IconCard icon={<LaptopIcon fontSize="large" />} link={"/events"} bgcolor={"green"} title={"Internships"} desc={"Get the right internships by upscaling yourself."}/>
             <IconCard icon={<EmojiEventsIcon fontSize="large" />} link={"/events"} bgcolor={"rgb(250, 206, 104)"} title={"Event"} desc={"Get connected with the community and connect with Innovators."}/>
-            <IconCard icon={<LightbulbIcon fontSize="large" />} link={"/"} bgcolor={"rgb(209, 133, 92)"} title={"Bootcamps"} desc={"Learn new skills with industry experts in short time."}/>
+            <IconCard icon={<LightbulbIcon fontSize="large" />} link={"/events"} bgcolor={"rgb(209, 133, 92)"} title={"Bootcamps"} desc={"Learn new skills with industry experts in short time."}/>
             </div>
         </section>
     )

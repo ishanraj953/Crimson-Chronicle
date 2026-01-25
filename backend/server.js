@@ -8,9 +8,9 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const auth = require("./middleware/authMiddleware");
 const nodemailer = require("nodemailer");
-
-
 require("dotenv").config();
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -26,8 +26,16 @@ async function main() {
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "rajishan950@gmal.com",
-    pass: "lzwl cosf gaof vuda"
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS
+  }
+});
+
+transporter.verify((err, success) => {
+  if (err) {
+    console.log("Mail Config Error:", err);
+  } else {
+    console.log("Mail Server Ready ✅");
   }
 });
 

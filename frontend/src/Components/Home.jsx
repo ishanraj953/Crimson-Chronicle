@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import {Link} from "react-router-dom"
 
 
 export default function Home() {
+  const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <main className="flex items-center justify-center grow from-white">
       <section 
@@ -25,13 +30,16 @@ export default function Home() {
           </div>
 
           <div className="flex gap-6">
+          <Link to={"/login"}>
             <button className="bg-red-600 cursor-pointer text-white px-6 py-3 rounded-lg shadow hover:bg-red-500 transition">
               Get Started
             </button>
-
+          </Link>
+          <Link to={"/events"}>
             <button className="bg-white cursor-pointer text-red-600 border border-red-400 px-6 py-3 rounded-lg hover:bg-red-50 transition">
               Events
             </button>
+          </Link>
           </div>
         </div>
 

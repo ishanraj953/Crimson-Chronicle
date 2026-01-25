@@ -6,6 +6,16 @@ const eventSchema = new Schema({
 
   organisation: { type: String, required: true },
 
+  owner: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User"
+  },
+
+  date: {
+    type: Date,
+    default: Date.now
+  },
+
   type: {
     type: String,
     enum: ["internship", "hackathon", "event", "workshop"],

@@ -19,16 +19,33 @@ export default function ShowEvent() {
 
   const onDelete = async (id) => {
   try {
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Please login first");
+      return;
+    }
+
     const res = await fetch(`http://localhost:5000/events/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: token
+      }
     });
+
+    if (!res.ok) {
+      alert("Delete failed");
+      return;
+    }
 
     window.location.href = "/events";
 
-  }catch (err) {
+  } catch (err) {
     console.log(err);
   }
-  };
+};
+
 
 
   if (!event) return <p>Loading...</p>;

@@ -74,7 +74,7 @@ export default function ShowEvent() {
           >Delete</button>
         </div>
         <div>
-          <Link to={``}>
+          <Link to={`/events/${id}/edit`}>
           <button 
           className="px-6 py-2 w-full rounded-xl mb-1.5 cursor-pointer 
             bg-red-500 text-white font-bold 

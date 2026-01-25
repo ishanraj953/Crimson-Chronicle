@@ -33,7 +33,7 @@ export default function EventTab() {
     <section className="flex flex-col items-center justify-center">
 
       <h1 className="text-4xl text-gray-700 font-bold font-mono underline decoration-orange-400 underline-offset-4 m-1 mt-6">
-        Opportunity
+        Oppertunity
       </h1>
 
       <div className="flex gap-5 m-5">

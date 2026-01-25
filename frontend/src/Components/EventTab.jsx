@@ -22,9 +22,9 @@ export default function EventTab() {
 
 
   const filteredCategory = events
-          .filter(e =>
-            selectedCategory === "all" ? true : e.type === selectedCategory
-          )
+    .filter(e =>
+      selectedCategory === "all" ? true : e.type === selectedCategory
+    )
 
   const eventsLoader = () => setLoader(prev => prev + 6);
   const eventsReducer = () => setLoader(6);

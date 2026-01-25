@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Header() {
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+  logout();
+  navigate("/login");
+  };
+
+
   return (
     <header className="sticky z-50 top-0">
       <nav className="w-full h-16 bg-white flex items-center justify-between px-6">
@@ -18,10 +31,34 @@ export default function Header() {
         </div>
 
         <div className="space-x-4 font-medium">
-          <Link to="/login" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Login</Link>
-          <Link to="/signup" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">SignUp</Link>
-          <Link to="/logout" className="hover:bg-red-500 rounded-xl p-2 hover:text-amber-50">Logout</Link>
-        </div>
+
+        {user ? (
+          <>
+            <span className="text-gray-700">
+              Hi, {user.name}
+            </span>
+
+            <button
+              onClick={handleLogout}
+              className="hover:bg-red-600 text-white cursor-pointer hover:rounded-2xl rounded-xl bg-red-500 p-2 hover:text-amber-50 transition"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="hover:bg-red-600  text-white bg-red-500 cursor-pointer hover:rounded-2xl rounded-xl p-2 hover:text-amber-50 transition">
+              Login
+            </Link>
+
+            <Link to="/signup" className="hover:bg-red-600  text-white bg-red-500 cursor-pointer hover:rounded-2xl rounded-xl p-2 hover:text-amber-50 transition">
+              SignUp
+            </Link>
+          </>
+        )}
+
+      </div>
+
 
       </nav>
     </header>

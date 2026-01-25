@@ -25,11 +25,13 @@ export default function Events() {
             <div className="grid grid-cols-4 gap-5 ">
             {
                 events
+                .filter(e =>  e.type === "event" ? true : e.type === "event")
                 .sort((a,b) => new Date(b.date) - new Date(a.date))
                 .slice(0,4)
                 .map(e => (
                     <EventCard
                         key={e._id}
+                        _id={e._id}
                         title={e.title}
                         desc={e.description}
                         img={e.img}

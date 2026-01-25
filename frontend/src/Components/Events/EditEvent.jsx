@@ -48,45 +48,56 @@ const navigate = useNavigate();
       });
   }, [id]);
 
-  // ✅ UPDATE handler
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const payload = {
-      title: details.title,
-      organisation: details.organisation,
-      type: details.type,
-      website: details.website,
-      img: details.img,
-      description: details.description,
-      participationType: details.participationType,
-      teamSize: {
-        min: Number(details.teamMin),
-        max: Number(details.teamMax),
-      },
-      mode: details.mode,
-      venue: details.venue,
-      reward: {
-        first: Number(details.rewardFirst),
-        second: Number(details.rewardSecond),
-        third: Number(details.rewardThird),
-      },
-    };
+  const token = localStorage.getItem("token");
 
-    const res = await fetch(`http://localhost:5000/events/${id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+  if (!token) {
+    alert("Please login first");
+    navigate("/login");
+    return;
+  }
 
-    if (!res.ok) {
-      alert("Failed to update event");
-      return;
-    }
-
-    alert("Event updated successfully!");
-    navigate("/events");
+  const payload = {
+    title: details.title,
+    organisation: details.organisation,
+    type: details.type,
+    website: details.website,
+    img: details.img,
+    description: details.description,
+    participationType: details.participationType,
+    teamSize: {
+      min: Number(details.teamMin),
+      max: Number(details.teamMax),
+    },
+    mode: details.mode,
+    venue: details.venue,
+    reward: {
+      first: Number(details.rewardFirst),
+      second: Number(details.rewardSecond),
+      third: Number(details.rewardThird),
+    },
   };
+
+  const res = await fetch(`http://localhost:5000/events/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    alert("Failed to update event");
+    return;
+  }
+
+  alert("Event updated successfully!");
+  navigate("/events");
+};
+
 
   if (!event) return <p className="text-center mt-20">Loading...</p>;
 

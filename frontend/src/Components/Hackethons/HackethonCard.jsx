@@ -25,6 +25,7 @@ export default function HackethonCard() {
             <div className="grid grid-cols-4 gap-5">
             {
                 events
+                .filter(e =>  e.type === "hackathon" ? true : e.type === "hackathon")
                 .sort((a,b) => new Date(b.date) - new Date(a.date))
                 .slice(0,4)
                 .map(e => (

@@ -9,6 +9,7 @@ import AboutRoute from "./pages/AbouteRoute";
 import LoginRoute from "./pages/LoginRoute";
 import SignUpRoute from "./pages/SignUpRoute";
 import NewEventRoute from "./pages/NewEventRoute";
+import EditRoute from "./pages/EditRoute";
 
 
 export default function App(){
@@ -24,6 +25,7 @@ export default function App(){
         <Route path="/login" element={<LoginRoute/>}/>
         <Route path="/signup" element={<SignUpRoute/>}/>
         <Route path="/events/create" element={<NewEventRoute/>}/>
+        <Route path="/events/:id/edit" element={<EditRoute/>}/>
       </Routes>
       <Footer/>
       </>

@@ -37,5 +37,16 @@ app.delete("/events/:id", async (req,res) => {
     res.send("HI")
    res.status(200).json({ success: true });
 });
+
+app.put("/events/:id", async(req,res) => {
+  const {id} = req.params;
+  const updatedEvent = await Event.findByIdAndUpdate(id,req.body,{new: true});
+
+  if (!updatedEvent) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+
+    res.status(200).json(updatedEvent);
+})
 const PORT = 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

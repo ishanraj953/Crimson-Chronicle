@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require('dotenv').config();
+}
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -8,9 +12,9 @@ const jwt = require("jsonwebtoken");
 const User = require("./models/user");
 const auth = require("./middleware/authMiddleware");
 const nodemailer = require("nodemailer");
-
-
 require("dotenv").config();
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -19,15 +23,23 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/crimson_chronical');
+  await mongoose.connect('mongodb://127.0.0.1:27017/losers');
 }
 
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "rajishan950@gmal.com",
-    pass: "lzwl cosf gaof vuda"
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS
+  }
+});
+
+transporter.verify((err, success) => {
+  if (err) {
+    console.log("Mail Config Error:", err);
+  } else {
+    console.log("Mail Server Ready ✅");
   }
 });
 

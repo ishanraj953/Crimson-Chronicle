@@ -45,7 +45,7 @@ export default function Home() {
 
         <div className="md:w-1/2 w-full flex items-center justify-center">
           <img 
-            src="https://img.freepik.com/vecteurs-libre/illustration-du-concept-du-concepteur-du-site-web_114360-26055.jpg"
+            src="https://www.pngall.com/wp-content/uploads/12/Illustration-PNG-Images.png"
             alt="Web design illustration"
             className="object-contain w-full max-h-112.5"
             loading="lazy"

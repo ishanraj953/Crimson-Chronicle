@@ -23,8 +23,7 @@ export default function AbouteTab() {
 
         <div className="w-full md:w-1/2 flex justify-center">
           <img
-            src="https://animationgravity.com/assets/images/rs_images/animation.gif"
-            alt="About Losers"
+            src="https://royalsoftsolutions.com/wp-content/uploads/2023/04/125606-contact-us.gif"
           />
         </div>
       </div>

@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require('dotenv').config();
+}
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -19,7 +23,7 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect('mongodb://127.0.0.1:27017/crimson_chronical');
+  await mongoose.connect('mongodb://127.0.0.1:27017/losers');
 }
 
 
